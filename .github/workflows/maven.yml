@@ -18,7 +18,19 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    services:
+        # Label used to access the service container
+        postgres:
+          # Docker Hub image
+          image: postgres
+          env:
+            POSTGRES_DB: mydatabase
+            POSTGRES_PASSWORD: secret
+            POSTGRES_USER: myuser
+          volumes:
+            - postgres_dev:/var/lib/postgresql/data
+          ports:
+            - 5433:5432
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
