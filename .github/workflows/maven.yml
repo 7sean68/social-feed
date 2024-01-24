@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: Tests
 
 on:
   push:
@@ -19,9 +19,7 @@ jobs:
 
     runs-on: ubuntu-latest
     services:
-        # Label used to access the service container
         postgres:
-          # Docker Hub image
           image: postgres
           env:
             POSTGRES_DB: mydatabase
@@ -39,8 +37,8 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+    - name: Verify with Maven
+      run: mvn -B verify --file pom.xml
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     # - name: Update dependency graph
