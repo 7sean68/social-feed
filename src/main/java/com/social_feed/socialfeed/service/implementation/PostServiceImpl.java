@@ -2,6 +2,7 @@ package com.social_feed.socialfeed.service.implementation;
 
 import org.springframework.stereotype.Service;
 
+import com.mail_sender.MailSender;
 import com.social_feed.socialfeed.dto.request.PostRequest;
 import com.social_feed.socialfeed.dto.response.PostResponse;
 import com.social_feed.socialfeed.entity.Post;
@@ -19,6 +20,8 @@ public class PostServiceImpl implements PostService {
   public PostResponse create(PostRequest dto) {
     Post post = toEntity(dto);
     post = postRepository.save(post);
+    MailSender mailSender = new MailSender();
+    mailSender.sendMail("post created");
     return toResponse(post);
   }
 
