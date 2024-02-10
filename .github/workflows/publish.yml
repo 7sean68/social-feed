@@ -29,5 +29,7 @@ jobs:
       - name: Publish package
         run: ./mvnw --batch-mode deploy --settings ./.m2/settings.xml
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          gh_packages_username: ${{ secrets.PACKAGES_USERNAME }}
           gh_packages_access_token: ${{ secrets.PACKAGES_ACCESS_TOKEN }}
+          GITHUB_DEPLOY_USERNAME: ${{ github.actor }}
+          GITHUB_DEPLOY_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -39,6 +39,7 @@ jobs:
     - name: Verify with Maven
       run: ./mvnw -B verify --file pom.xml --settings ./.m2/settings.xml
       env:
+        gh_packages_username: ${{ secrets.PACKAGES_USERNAME }}
         gh_packages_access_token: ${{ secrets.PACKAGES_ACCESS_TOKEN }}
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
