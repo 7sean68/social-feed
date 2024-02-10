@@ -5,6 +5,17 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    services:
+        postgres:
+          image: postgres
+          env:
+            POSTGRES_DB: mydatabase
+            POSTGRES_PASSWORD: secret
+            POSTGRES_USER: myuser
+          volumes:
+            - postgres_dev:/var/lib/postgresql/data
+          ports:
+            - 5433:5432
     permissions:
       contents: read
       packages: write
@@ -14,7 +25,8 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: maven
       - name: Publish package
-        run: mvn --batch-mode deploy
+        run: ./mvnw --batch-mode deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
