@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.social_feed</groupId>
 	<artifactId>social-feed</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.1.0-SNAPSHOT</version>
 	<name>social-feed</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
